@@ -17,6 +17,18 @@ function do_servo(servo : Servos, pos : number) {
     }
 }
 
+function do_motor(velocity : number)
+{
+    if (velocity >= 0){
+        pins.analogWritePin(AnalogPin.P12, velocity)
+        pins.analogWritePin(AnalogPin.P8, 0)
+    }
+    else {
+        pins.analogWritePin(AnalogPin.P8, Math.abs(velocity))
+        pins.analogWritePin(AnalogPin.P12, 0)
+    }
+}
+
 function on_button_pressed_b() {
     pins.analogWritePin(AnalogPin.P12, 1023*speed/10)
     pins.analogWritePin(AnalogPin.P8, 0)
