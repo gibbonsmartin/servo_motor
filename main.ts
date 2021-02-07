@@ -36,10 +36,10 @@ bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function on_
     switch (data.substr(0,1)){
         case "S":
             switch (data.substr(1,1)){
-                case "0":
+                case "1":
                     do_servo(Servos.SERVO_1, parseInt(data.substr(2)) )
                 break;
-                case "1":
+                case "2":
                     do_servo(Servos.SERVO_2, parseInt(data.substr(2)) )
                 break;
                 default:
