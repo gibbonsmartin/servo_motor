@@ -40,7 +40,7 @@ bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function on_
                     do_servo(Servos.SERVO_1, parseInt(data.substr(2)) )
                 break;
                 case "1":
-                    do_servo(Servos.SERVO_1, parseInt(data.substr(2)) )
+                    do_servo(Servos.SERVO_2, parseInt(data.substr(2)) )
                 break;
                 default:
                 break;
