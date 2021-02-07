@@ -32,7 +32,7 @@ function do_motor(velocity : number)
 bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function on_uart_data_received() {
     let data = bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
 
-    basic.showString(data)
+  //  basic.showString(data)
     switch (data.substr(0,1)){
         case "S":
             switch (data.substr(1,1)){
