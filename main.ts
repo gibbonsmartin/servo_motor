@@ -2,6 +2,7 @@ let speed: number;
 let direction : string;
 let pos = [0,0];
 let cur_pos = [0,0];
+let cur_speed : number;
 
 enum Servos{
     SERVO_1,
@@ -40,15 +41,21 @@ basic.forever(function () {
         --cur_pos[i];
       }
     }
+    if (speed > cur_speed){
+      ++cur_speed;
+    }
+    else if (speed < cur_speed){
+        --cur_speed;
+    }
     do_servo(Servos.SERVO_1, cur_pos[0]);
     do_servo(Servos.SERVO_2, cur_pos[1]);
+    do_motor(speed);
     basic.pause(10);
 })
 
 bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function on_uart_data_received() {
     let data = bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
 
-  //  basic.showString(data)
     switch (data.substr(0,1)){
         case "S":
             switch (data.substr(1,1)){
@@ -63,7 +70,7 @@ bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function on_
             }
         break;
         case "M":
-            do_motor(parseInt(data.substr(1)));
+            speed = parseInt(data.substr(1));
         break;
         default:
         break;
