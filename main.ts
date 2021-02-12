@@ -1,7 +1,7 @@
 let speed: number;
 let direction : string;
-let pos = [0,0];
-let cur_pos = [0,0];
+let pos = [90,90];
+let cur_pos = [90,90];
 let cur_speed : number;
 
 enum Servos{
@@ -37,7 +37,7 @@ basic.forever(function () {
       if (pos[i] > cur_pos[i]){
         ++cur_pos[i];
       }
-      else if (pos[i] > cur_pos[i]){
+      else if (pos[i] < cur_pos[i]){
         --cur_pos[i];
       }
     }
@@ -49,7 +49,7 @@ basic.forever(function () {
     }
     do_servo(Servos.SERVO_1, cur_pos[0]);
     do_servo(Servos.SERVO_2, cur_pos[1]);
-    do_motor(speed);
+    do_motor(cur_speed);
     basic.pause(10);
 })
 
